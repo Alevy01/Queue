@@ -463,6 +463,27 @@ app.post('/removeAdmin', restrict, function(req, res){
   });
 });
 
+app.get('/userIsAdmin/:org_name', restrict, function(req,res){
+  var username = req.session.user.username;
+  var org = req.params.org_name;
+
+  sqlQueries.userIsAdmin(dbInfo, username, org, function(err, rows){
+    if(err){
+      log.fail("Error accessing if the user is admin.");
+      res.json({
+        success : false,
+        errorMessage : "Error accessing if user is admin"
+      });
+      return;
+    }
+    log.success("Sucess accessing if user is admin.");
+    res.json({
+      success : true
+    });
+  });
+
+});
+
 app.get('/searchOrganizations/:search_name', restrict, function(req, res){
   
   var search = req.params.search_name;
