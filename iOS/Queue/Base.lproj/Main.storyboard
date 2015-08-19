@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--login-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController storyboardIdentifier="loginController" title="login" id="vXZ-lx-hvc" customClass="loginController" customModule="Queue" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hDQ-ki-hMh"/>
+                        <viewControllerLayoutGuide type="bottom" id="F5l-wy-Wkv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sIv-hU-xVw">
+                                <rect key="frame" x="141" y="168" width="38" height="30"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="xXO-Iu-Oah"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ave-nh-BBj">
+                                <rect key="frame" x="35" y="75" width="250" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VRR-jf-mxA">
+                                <rect key="frame" x="35" y="130" width="250" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y34-lX-dzd">
+                                <rect key="frame" x="132" y="190" width="57" height="30"/>
+                                <state key="normal" title="Register">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="agJ-an-qF7" kind="modal" id="Fqd-sh-cgZ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.001386002052091162" green="0.079530102698837424" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="ave-nh-BBj" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="19" id="4AQ-hR-O9X"/>
+                            <constraint firstItem="Y34-lX-dzd" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="8kT-BO-cqU"/>
+                            <constraint firstItem="ave-nh-BBj" firstAttribute="top" secondItem="hDQ-ki-hMh" secondAttribute="bottom" constant="55" id="BIF-y3-mkd"/>
+                            <constraint firstItem="VRR-jf-mxA" firstAttribute="top" secondItem="ave-nh-BBj" secondAttribute="bottom" constant="25" id="CIx-9g-pKS"/>
+                            <constraint firstItem="VRR-jf-mxA" firstAttribute="centerX" secondItem="sIv-hU-xVw" secondAttribute="centerX" id="DZp-p1-UAR"/>
+                            <constraint firstItem="sIv-hU-xVw" firstAttribute="top" secondItem="VRR-jf-mxA" secondAttribute="bottom" constant="8" symbolic="YES" id="JyS-Ls-VlF"/>
+                            <constraint firstItem="VRR-jf-mxA" firstAttribute="leading" secondItem="ave-nh-BBj" secondAttribute="leading" id="UYP-cn-h9u"/>
+                            <constraint firstItem="Y34-lX-dzd" firstAttribute="top" secondItem="VRR-jf-mxA" secondAttribute="bottom" constant="30" id="cWh-rt-p7H"/>
+                            <constraint firstItem="ave-nh-BBj" firstAttribute="trailing" secondItem="VRR-jf-mxA" secondAttribute="trailing" id="n7U-eC-ful"/>
+                            <constraint firstItem="sIv-hU-xVw" firstAttribute="centerX" secondItem="Y34-lX-dzd" secondAttribute="centerX" id="vhc-hS-aKD"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="passwordField" destination="VRR-jf-mxA" id="11i-dp-Wiq"/>
+                        <outlet property="usernameField" destination="ave-nh-BBj" id="jmQ-R6-SMY"/>
+                        <segue destination="Zjs-K3-wnR" kind="modal" identifier="toUserOrgController" id="u5P-Hz-c8y"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-86" y="7.9999999999999991"/>
+        </scene>
+        <!--User Organizations Controller-->
+        <scene sceneID="LN2-b1-MOX">
+            <objects>
+                <viewController storyboardIdentifier="UserOrganizationsController" id="Zjs-K3-wnR" customClass="userOrganizationsController" customModule="Queue" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TyL-Sc-at1"/>
+                        <viewControllerLayoutGuide type="bottom" id="ekG-36-QTw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="EHM-65-YLX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="BHk-ft-ozg">
+                                <rect key="frame" x="7" y="50" width="306" height="518"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Zjs-K3-wnR" id="pdC-9A-EfB"/>
+                                    <outlet property="delegate" destination="Zjs-K3-wnR" id="PwV-kl-ahA"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Z9-pd-7Tz">
+                                <rect key="frame" x="283" y="18" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="nr6-rL-Sze"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="+">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="gIR-tg-wLq" kind="modal" identifier="toNewOrganizationController" id="btV-rT-6AX"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="BHk-ft-ozg" firstAttribute="top" secondItem="7Z9-pd-7Tz" secondAttribute="bottom" constant="2" id="ETB-hc-gCg"/>
+                            <constraint firstItem="BHk-ft-ozg" firstAttribute="trailing" secondItem="7Z9-pd-7Tz" secondAttribute="trailing" id="SvX-7b-WSK"/>
+                            <constraint firstItem="7Z9-pd-7Tz" firstAttribute="top" secondItem="EHM-65-YLX" secondAttribute="topMargin" constant="18" id="V8a-J5-mQg"/>
+                            <constraint firstItem="BHk-ft-ozg" firstAttribute="bottom" secondItem="ekG-36-QTw" secondAttribute="top" id="XZD-p2-jGF"/>
+                            <constraint firstItem="BHk-ft-ozg" firstAttribute="centerX" secondItem="EHM-65-YLX" secondAttribute="centerX" id="ZT2-4U-DeK"/>
+                            <constraint firstItem="BHk-ft-ozg" firstAttribute="leading" secondItem="EHM-65-YLX" secondAttribute="leadingMargin" constant="-9" id="rWV-WY-Ozu"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Kjc-7T-ITH"/>
+                    <connections>
+                        <outlet property="tableView" destination="BHk-ft-ozg" id="dkU-Ja-Pi8"/>
+                        <segue destination="nkq-Qb-PMe" kind="modal" identifier="toOrgController" id="u1f-1N-XKY"/>
+                        <segue destination="ESc-pc-bNk" kind="modal" identifier="toAdminOrgController" id="S3l-pl-bpX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Z8-Ay-rsb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="647" y="2"/>
+        </scene>
+        <!--Organization Controller-->
+        <scene sceneID="jIN-fG-jBm">
+            <objects>
+                <viewController storyboardIdentifier="organizationController" id="nkq-Qb-PMe" customClass="organizationController" customModule="Queue" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xSe-Li-eRM"/>
+                        <viewControllerLayoutGuide type="bottom" id="9bY-sP-9t3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="w0a-Kz-gtT">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="dXv-nm-9nL" userLabel="QueueTable">
+                                <rect key="frame" x="25" y="87" width="320" height="413"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="nkq-Qb-PMe" id="VPm-pz-hy4"/>
+                                    <outlet property="delegate" destination="nkq-Qb-PMe" id="eKr-5X-ffK"/>
+                                </connections>
+                            </tableView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5IM-Qs-9YM">
+                                <rect key="frame" x="0.0" y="43" width="380" height="44"/>
+                                <items>
+                                    <navigationItem id="7t7-bB-jKC">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="q2I-IJ-cqN">
+                                            <connections>
+                                                <segue destination="Zjs-K3-wnR" kind="modal" id="QMM-Cb-LMT"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <connections>
+                                            <outlet property="backBarButtonItem" destination="q2I-IJ-cqN" id="Zdt-Dl-0a1"/>
+                                        </connections>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qjp-ye-1pS">
+                                <rect key="frame" x="-1" y="514" width="364" height="46"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="I Want To Talk!">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addToQueuePressed:" destination="nkq-Qb-PMe" eventType="touchUpInside" id="PkO-71-EAs"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.026301576980000001" green="0.072168898590000002" blue="1" alpha="0.35999999999999999" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="dkE-PY-NBD"/>
+                    <connections>
+                        <outlet property="orgTitle" destination="5IM-Qs-9YM" id="KMR-pk-WLp"/>
+                        <outlet property="tableView" destination="dXv-nm-9nL" id="Eft-dX-KiT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TgU-D3-HIh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-225" y="954"/>
+        </scene>
+        <!--Organization Admin Controller-->
+        <scene sceneID="gn1-cH-vr6">
+            <objects>
+                <viewController storyboardIdentifier="organizationAdminController" id="ESc-pc-bNk" customClass="organizationAdminController" customModule="Queue" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kZQ-ou-bTt"/>
+                        <viewControllerLayoutGuide type="bottom" id="j2l-cF-Em2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4E5-JK-Dxc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lsa-t0-RRS">
+                                <rect key="frame" x="0.0" y="42" width="320" height="44"/>
+                                <items>
+                                    <navigationItem id="Jpi-nE-OzU">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="ikr-nv-KDV">
+                                            <connections>
+                                                <segue destination="Zjs-K3-wnR" kind="modal" id="ZNP-LC-l0w"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Pfn-Xt-vSI">
+                                <rect key="frame" x="0.0" y="86" width="320" height="415"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="ESc-pc-bNk" id="i2V-xQ-U20"/>
+                                    <outlet property="delegate" destination="ESc-pc-bNk" id="kfb-YG-Gd5"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CfA-7w-JBA">
+                                <rect key="frame" x="170" y="506" width="150" height="62"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <state key="normal" title="Next ">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="nextUserPressed:" destination="ESc-pc-bNk" eventType="touchUpInside" id="H4j-5Q-c7J"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FNt-AU-Nbm">
+                                <rect key="frame" x="0.0" y="506" width="150" height="62"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <state key="normal" title="I Want To Talk!">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addToQueuePressed:" destination="ESc-pc-bNk" eventType="touchUpInside" id="oXx-MC-KqZ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.026301576980000001" green="0.072168898590000002" blue="1" alpha="0.35999999999999999" colorSpace="calibratedRGB"/>
+                    </view>
+                    <connections>
+                        <outlet property="adminNavBar" destination="Lsa-t0-RRS" id="rbU-ZO-l8P"/>
+                        <outlet property="tableView" destination="Pfn-Xt-vSI" id="LYn-gx-PNc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m0P-Q5-mXb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1289" y="974"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="aCq-fY-toO">
+            <objects>
+                <viewController id="gIR-tg-wLq" customClass="addNewOrgController" customModule="Queue" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="i7l-cu-4hY"/>
+                        <viewControllerLayoutGuide type="bottom" id="0gH-gQ-jqU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SVr-Nh-2ZK">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Organization Name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mWF-yr-gjd">
+                                <rect key="frame" x="16" y="98" width="129" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Organization Password:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mdC-Qs-EoU">
+                                <rect key="frame" x="16" y="158" width="153" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="(50 characters max)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j0Y-3F-dKN">
+                                <rect key="frame" x="16" y="120" width="274" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="(6 characters min)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zLW-3u-xXn">
+                                <rect key="frame" x="16" y="179" width="274" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iph-Wi-Bxi">
+                                <rect key="frame" x="130" y="242" width="46" height="30"/>
+                                <state key="normal" title="Create">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="createPressed:" destination="gIR-tg-wLq" eventType="touchUpInside" id="F4f-O3-I9j"/>
+                                </connections>
+                            </button>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DKL-tv-CM8">
+                                <rect key="frame" x="0.0" y="33" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Create New Organization" id="QSm-SS-O7z">
+                                        <barButtonItem key="backBarButtonItem" title="backToOrgs" id="lqR-e3-kA5"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="CMB-Pr-sUK">
+                                            <connections>
+                                                <segue destination="Zjs-K3-wnR" kind="modal" identifier="newOrgBackToAll" id="BpL-SC-vXd"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0013860020519999999" green="0.079530102699999994" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="RLn-OS-NUg"/>
+                    <connections>
+                        <outlet property="organizationName" destination="j0Y-3F-dKN" id="A3A-xA-F00"/>
+                        <outlet property="organizationPassword" destination="zLW-3u-xXn" id="bvF-gU-bUg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JAc-rS-XyK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1264" y="8"/>
+        </scene>
+        <!--Register Controller-->
+        <scene sceneID="0WX-YC-Ek4">
+            <objects>
+                <viewController id="agJ-an-qF7" customClass="registerController" customModule="Queue" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Cho-Cg-gqi"/>
+                        <viewControllerLayoutGuide type="bottom" id="Yah-R9-VVa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rZE-DR-web">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="azp-Fb-Tvp">
+                                <rect key="frame" x="16" y="101" width="288" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password (min. 6 characters)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I0M-aJ-dKJ">
+                                <rect key="frame" x="16" y="150" width="288" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YKk-hD-HTE">
+                                <rect key="frame" x="16" y="201" width="288" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ecb-H4-o4Q">
+                                <rect key="frame" x="137" y="306" width="57" height="30"/>
+                                <state key="normal" title="Register">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="registerPressed:" destination="agJ-an-qF7" eventType="touchUpInside" id="IfM-IW-FAs"/>
+                                </connections>
+                            </button>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uI5-1n-WnC">
+                                <rect key="frame" x="0.0" y="41" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Register" id="RYd-w8-n47">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="1el-Du-rSJ">
+                                            <connections>
+                                                <segue destination="vXZ-lx-hvc" kind="modal" id="eTc-XJ-8h1"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0013860020519999999" green="0.079530102699999994" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                    </view>
+                    <connections>
+                        <outlet property="emailField" destination="YKk-hD-HTE" id="2bk-EM-MCd"/>
+                        <outlet property="passwordField" destination="I0M-aJ-dKJ" id="g4M-ue-UlI"/>
+                        <outlet property="usernameField" destination="azp-Fb-Tvp" id="UPo-az-hgM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lD6-rZ-zin" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="592" y="-831"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="ZNP-LC-l0w"/>
+    </inferredMetricsTieBreakers>
+</document>
