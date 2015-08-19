@@ -46,6 +46,7 @@ create table organizations (
     organization_salt   	varchar(50) not null,
     organization_hash_code  varchar(50) not null,
     organization_owner		varchar(30) not null,
+    is_queue_active			boolean not null,
     primary key (organization_id)
 );
 
@@ -59,8 +60,7 @@ create table user_organization (
 create table queue (
     username            varchar(30) not null,
     organization_id     int not null,
-    queue_id            int not null,
-    is_active			boolean not null
+    queue_id            int not null
 );
 
 INSERT INTO users 
@@ -72,14 +72,10 @@ VALUES
 ('tj', 't@a.com', '12345678901234567890', 'fdfd75ed7db53c8c4f44d715bc64e8e8cff070ef');
 
 INSERT INTO organizations 
-(organization_name, organization_salt, organization_hash_code, organization_owner)
+(organization_name, organization_salt, organization_hash_code, organization_owner, is_queue_active)
 VALUES
-('testOrg', '12345678901234567890', 'fdfd75ed7db53c8c4f44d715bc64e8e8cff070ef', 'adam'),
-('testingOrg', '12345678901234567890', 'fdfd75ed7db53c8c4f44d715bc64e8e8cff070ef', 'adam'),
-('testerOrg', '12345678901234567890', 'fdfd75ed7db53c8c4f44d715bc64e8e8cff070ef', 'adam'),
-('testeOrg', '12345678901234567890', 'fdfd75ed7db53c8c4f44d715bc64e8e8cff070ef', 'adam'),
-('testerOrg', '12345678901234567890', 'fdfd75ed7db53c8c4f44d715bc64e8e8cff070ef', 'adam'),
-('PDT', '12345678901234567890', 'fdfd75ed7db53c8c4f44d715bc64e8e8cff070ef', 'adam');
+('testOrg', '12345678901234567890', 'fdfd75ed7db53c8c4f44d715bc64e8e8cff070ef', 'adam', FALSE),
+('PDT', '12345678901234567890', 'fdfd75ed7db53c8c4f44d715bc64e8e8cff070ef', 'adam', FALSE);
 
 INSERT INTO user_organization
 (username, organization_id, organization_owner, is_admin)

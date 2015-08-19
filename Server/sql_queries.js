@@ -43,7 +43,10 @@ module.exports={
 		var conn = mysql.createConnection(dbInfo);
 		conn.query(queryString, function(err, rows, fields){
 			//log.fail("ROWS : " + rows);
-			if(err) fn(err);
+			if(err) {
+				fn(err);
+				return;
+			}
 			fn(err, rows);
 		});
 		conn.end();
@@ -210,45 +213,35 @@ module.exports={
 
 	},
 
-	removeUserFromQueue : function(dbInfo, user, org_name, fn){
-		var queryString = "SELECT * FROM queue WHERE organization_id = (SELECT organization_id FROM organizations WHERE organization_name = '"+org_name+"');";
-		var conn= mysql.createConnection(dbInfo);
-
-		conn.query(queryString, function(err, rows, fields){
-			var queue = rows;
-			var queryString = "SELECT * FROM queue WHERE organization_id = (SELECT organization_id FROM organizations WHERE organization_name = '"+org_name+"') AND username = '"+user.username+"';";
-			conn.query(queryString, function(err, rows, fields){
-				if(err){
-					log.fail("Error selecting queue spot for user. " + err);
-					return err;
+	removeUserFromQueue : function(dbInfo, username, org_name, fn){
+		var is_admin;
+		var queue_id;
+		
+		userIsAdmin(dbInfo, username, org_name, function(err, rows){
+			if(err){
+				log.fail(err);
+				return err;
+			}
+			else{
+				is_admin = rows[0];
+				is_admin = is_admin['is_admin'];
+				if(is_admin){
+					var queryString = "SELECT queue_id FROM queue WHERE username = '"+username+"' AND organization_id = (SELECT organization_id FROM organizations WHERE organization_name = '"+org_name+"');";
+					var conn = mysql.createConnection(dbInfo);
+					conn.query(queryString, function(err, rows, fields){
+						if(err){
+							log.fail("Error selecting queue_id from user.");
+							return err;
+						}
+						else{
+							queue_id = rows[0]['queue_id'];
+							
+						}
+					});
 				}
-				
-				var id = rows[0].queue_id;
-				var queryString = "DELETE FROM queue WHERE organization_id = (SELECT organization_id FROM organizations WHERE organization_name = '"+org_name+"') AND queue_id = '"+id+"';";
-				conn.query(queryString, function(err, rows, fields){
-					if(err){
-						log.fail("Error deleting user from query. "+ err);
-						return err;
-					}
-					fn(err, rows);
-					
-				});
 
-
-				
-				//log.debug("ID: "+ id + " " + queue.length);
-				for(var i = id; i<=queue.length; i++){
-						var queryString = "UPDATE queue SET queue_id = '"+i+"' WHERE queue_id ='"+(i+1)+"';";
-						conn.query(queryString, function(err, rows, fields){
-							if(err){
-								log.fail("Error updating queue_id " + err);
-								return err;
-							}
-						});		
-				}
-				conn.end();
-			});
-		});
+			}
+		});	
 	},
 
 	makeUserAdmin : function(dbInfo, user, userToMakeAdmin, org, fn){
@@ -382,8 +375,38 @@ module.exports={
 			fn(err, rows);
 			conn.end();
 		});
+	},
+
+	userIsAdmin : function(dbInfo, username, org_name, fn){
+		var queryString = "SELECT is_admin FROM user_organization WHERE username = '"+username+"' AND organization_id = (SELECT organization_id FROM organizations WHERE organization_name = '"+org_name+"')";
+		var conn = mysql.createConnection(dbInfo);
+
+		conn.query(queryString, function(err, rows, fields){
+			if(err){
+				log.fail("Error querying if user is admin");
+				return err;
+			}
+			fn(err, rows);
+			conn.end();
+		});
 	}
 }
+
+function userIsAdmin(dbInfo, username, org_name, fn){
+		var queryString = "SELECT is_admin FROM user_organization WHERE username = '"+username+"' AND organization_id = (SELECT organization_id FROM organizations WHERE organization_name = '"+org_name+"')";
+		var conn = mysql.createConnection(dbInfo);
+
+		conn.query(queryString, function(err, rows, fields){
+			if(err){
+				log.fail("Error querying if user is admin");
+				return err;
+			}
+			fn(err, rows);
+			conn.end();
+		});
+}
+
+
 
 
 

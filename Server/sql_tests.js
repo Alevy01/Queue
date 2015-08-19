@@ -1,3 +1,4 @@
+
 var mysql      = require('mysql');
 var sqlQueries = require('./sql_queries');
 var log = require('./log');
@@ -15,7 +16,8 @@ var addUserTesting = false;
 var getOrganizationsTesting = false;
 var addOrganizationTesting = false;
 var addUserToOrgTesting = false;
-var searchOrganizaitonsTesting = true;
+var searchOrganizaitonsTesting = false;
+var removeUserFromQueueTesting = true;
 
 testUser = {
 	username : 'testUser',
@@ -93,6 +95,18 @@ if(searchOrganizaitonsTesting){
 	});
 }
 
+if(removeUserFromQueueTesting){
+	var username = "sagar";
+	var org_name = "ZBT";
+
+	sqlQueries.removeUserFromQueue(dbInfo, username, org_name, function(err, rows, fields){
+		if(err){
+			log.fail(err);
+			return;
+		}
+		
+	});
+}
 
 
 

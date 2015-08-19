@@ -343,7 +343,7 @@ app.post('/addUserToQueue', restrict, function(req, res){
 });
 
 app.post('/removeUserFromQueue', restrict, function(req, res){
-  var user = req.session.user;
+  var user = req.body.username;
   sqlQueries.removeUserFromQueue(dbInfo, user, req.body.org_name, function(err, rows){
     if(err){
       log.fail("Error removing user from queue. " + err);
@@ -463,7 +463,7 @@ app.post('/removeAdmin', restrict, function(req, res){
   });
 });
 
-app.get('/userIsAdmin/:org_name', restrict, function(req,res){
+app.get('/isUserAdmin/:org_name', restrict, function(req,res){
   var username = req.session.user.username;
   var org = req.params.org_name;
 
@@ -478,7 +478,8 @@ app.get('/userIsAdmin/:org_name', restrict, function(req,res){
     }
     log.success("Sucess accessing if user is admin.");
     res.json({
-      success : true
+      success : true,
+      is_admin : rows[0]
     });
   });
 
