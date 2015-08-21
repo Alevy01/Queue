@@ -353,7 +353,7 @@ app.post('/removeUserFromQueue', restrict, function(req, res){
       });
       return;
     }
-    log.success("Success removing user from queue.");
+    log.success("Success removingnuser from queue.");
     res.json({
       success : true
     });

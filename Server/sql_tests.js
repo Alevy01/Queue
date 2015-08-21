@@ -96,15 +96,15 @@ if(searchOrganizaitonsTesting){
 }
 
 if(removeUserFromQueueTesting){
-	var username = "sagar";
-	var org_name = "ZBT";
+	var username = "testUser";
+	var org_name = "testOrganization";
 
 	sqlQueries.removeUserFromQueue(dbInfo, username, org_name, function(err, rows, fields){
 		if(err){
 			log.fail(err);
 			return;
 		}
-		
+
 	});
 }
 

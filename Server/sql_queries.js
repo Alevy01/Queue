@@ -217,31 +217,52 @@ module.exports={
 		var is_admin;
 		var queue_id;
 		
-		userIsAdmin(dbInfo, username, org_name, function(err, rows){
+
+		var queryString = "SELECT queue_id FROM queue WHERE organization_id = (SELECT organization_id FROM organizations WHERE organization_name = '"+org_name+"');";
+		var conn = mysql.createConnection(dbInfo);
+		conn.query(queryString, function(err, rows, fields){
 			if(err){
-				log.fail(err);
+				log.fail("Error selecting queue_id from user.");
 				return err;
 			}
 			else{
-				is_admin = rows[0];
-				is_admin = is_admin['is_admin'];
-				if(is_admin){
-					var queryString = "SELECT queue_id FROM queue WHERE username = '"+username+"' AND organization_id = (SELECT organization_id FROM organizations WHERE organization_name = '"+org_name+"');";
-					var conn = mysql.createConnection(dbInfo);
-					conn.query(queryString, function(err, rows, fields){
-						if(err){
-							log.fail("Error selecting queue_id from user.");
-							return err;
-						}
-						else{
-							queue_id = rows[0]['queue_id'];
-							
-						}
-					});
-				}
+				queue_id = rows[0]['queue_id'];
+				var queryString = "DELETE FROM queue WHERE organization_id = (SELECT organization_id FROM organizations WHERE organization_name = '"+org_name+"') AND queue_id = '"+queue_id+"'";
+				var conn = mysql.createConnection(dbInfo);
+				conn.query(queryString, function(err, rows, fields){
+					if(err){
+						log.fail("Error deleting user from queue.");
+						return err;
+					}
+					else{
+						var queryString = "SELECT * FROM queue WHERE organization_id = (SELECT organization_id FROM organizations WHERE organization_name = '"+org_name+"')";
+						var conn = mysql.createConnection(dbInfo);
+						conn.query(queryString, function(err, rows, fields){
+							if(err){
+								log.fail("Error selecting all users in queue");
+								return err;
+							}
+							else{
+								for(i = queue_id+1; i<rows.length+(queue_id+1); i++){
+									var queryString = "UPDATE queue SET queue_id = '"+(i-1)+"' WHERE queue_id = '"+i+"'";
+									log.debug(queryString);
+									var conn = mysql.createConnection(dbInfo);
+									conn.query(queryString, function(err, rows, fields){
+										if(err){
+											log.fail("Error updating user queue position.");
+											return err;
+										}
+									});
+								}
 
+								fn(err, rows);
+								conn.end();
+							}
+						});
+					}
+				});
 			}
-		});	
+		});
 	},
 
 	makeUserAdmin : function(dbInfo, user, userToMakeAdmin, org, fn){
