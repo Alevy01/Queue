@@ -344,7 +344,8 @@ app.post('/addUserToQueue', restrict, function(req, res){
 
 app.post('/removeUserFromQueue', restrict, function(req, res){
   var user = req.body.username;
-  sqlQueries.removeUserFromQueue(dbInfo, user, req.body.org_name, function(err, rows){
+  var orgName = req.body.org_name;
+  sqlQueries.removeUserFromQueue(dbInfo, user, orgName, function(err, rows){
     if(err){
       log.fail("Error removing user from queue. " + err);
       res.json({
@@ -353,7 +354,7 @@ app.post('/removeUserFromQueue', restrict, function(req, res){
       });
       return;
     }
-    log.success("Success removingnuser from queue.");
+    log.success("Success removing user from queue.");
     res.json({
       success : true
     });

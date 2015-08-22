@@ -20,6 +20,7 @@ class organizationAdminController: UIViewController, UITextFieldDelegate {
     
     var users : [String] = []
     
+    var userToRemove : String = ""
     
     func getUsersInQueue(){
         Alamofire.request(.GET, server+"/getUsersInQueue/"+orgName)
@@ -48,28 +49,34 @@ class organizationAdminController: UIViewController, UITextFieldDelegate {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        //let org : String = organizations[indexPath.row]
-        //println(org)
-        //orgToPass = org
-        
-        //performSegueWithIdentifier("toOrgController", sender: nil)
+        userToRemove = users[indexPath.row]
+//        println(userToRemove)
         
     }
     
     
     @IBAction func nextUserPressed(sender : UIButton){
-        let parameter = [
-            "org_name" : orgName
+        let parameters = [
+            "org_name" : orgName,
+            "username" : userToRemove
         ]
         
-        Alamofire.request(.POST, server+"/removeUserFromQueue")
+        Alamofire.request(.POST, server+"/removeUserFromQueue", parameters : parameters)
             .responseJSON { (req, res, jsonObj, err) in
                     let json = JSON(jsonObj!)
                     let str = json["success"]
                 
                 if(str){
-                    self.tableView.reloadData()
-                    //Where I should make the push notification for next user
+                    self.users.removeAll()
+                    self.getUsersInQueue()
+//                    println("SUCCESS");
+//                    var alertView: UIAlertView = UIAlertView()
+//                    alertView.title = "Success!"
+//                    alertView.message = "You have removed user from the queue."
+//                    alertView.delegate = self
+//                    alertView.addButtonWithTitle("OK")
+//                    alertView.show()
+//                    self.tableView.reloadData()
                 }
                 else{
                     println("ERROR!");

@@ -218,7 +218,7 @@ module.exports={
 		var queue_id;
 		
 
-		var queryString = "SELECT queue_id FROM queue WHERE organization_id = (SELECT organization_id FROM organizations WHERE organization_name = '"+org_name+"');";
+		var queryString = "SELECT queue_id FROM queue WHERE username = '"+username+"' AND organization_id = (SELECT organization_id FROM organizations WHERE organization_name = '"+org_name+"');";
 		var conn = mysql.createConnection(dbInfo);
 		conn.query(queryString, function(err, rows, fields){
 			if(err){
@@ -255,13 +255,13 @@ module.exports={
 									});
 								}
 
-								fn(err, rows);
-								conn.end();
+								fn(err,rows);
 							}
 						});
-					}
+					}	
 				});
 			}
+			conn.end();
 		});
 	},
 
