@@ -61,28 +61,41 @@ class organizationAdminController: UIViewController, UITextFieldDelegate {
             "username" : userToRemove
         ]
         
-        Alamofire.request(.POST, server+"/removeUserFromQueue", parameters : parameters)
-            .responseJSON { (req, res, jsonObj, err) in
-                    let json = JSON(jsonObj!)
-                    let str = json["success"]
+        if(parameters["username"] == ""){
+            var alertView: UIAlertView = UIAlertView()
+            alertView.title = "Error"
+            alertView.message = "You must select a user to remove."
+            alertView.delegate = self
+            alertView.addButtonWithTitle("OK")
+            alertView.show()
+            self.tableView.reloadData()
+
+        }
+        
+        else{
+            Alamofire.request(.POST, server+"/removeUserFromQueue", parameters : parameters)
+                .responseJSON { (req, res, jsonObj, err) in
+                        let json = JSON(jsonObj!)
+                        let str = json["success"]
+                    
+                    if(str){
+                        self.users.removeAll()
+                        self.getUsersInQueue()
+    //                    println("SUCCESS");
+    //                    var alertView: UIAlertView = UIAlertView()
+    //                    alertView.title = "Success!"
+    //                    alertView.message = "You have removed user from the queue."
+    //                    alertView.delegate = self
+    //                    alertView.addButtonWithTitle("OK")
+    //                    alertView.show()
+    //                    self.tableView.reloadData()
+                    }
+                    else{
+                        println("ERROR!");
+                    }
                 
-                if(str){
-                    self.users.removeAll()
-                    self.getUsersInQueue()
-//                    println("SUCCESS");
-//                    var alertView: UIAlertView = UIAlertView()
-//                    alertView.title = "Success!"
-//                    alertView.message = "You have removed user from the queue."
-//                    alertView.delegate = self
-//                    alertView.addButtonWithTitle("OK")
-//                    alertView.show()
-//                    self.tableView.reloadData()
                 }
-                else{
-                    println("ERROR!");
-                }
-            
-            }
+        }
     }
     
     @IBAction func addToQueuePressed(sender : UIButton){
